@@ -13,9 +13,8 @@ st.title("📊 Vue d'ensemble du funnel — Campagne d'appels IA")
 # ── Auth & Data ──
 # Lien entre google sheet et mon local : appel à un API de google 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-creds = Credentials.from_service_account_file(
-    "/Users/test/Documents/Test_BOT/myprojecttest-494020-871f9e6f743e.json", scopes=SCOPES
-)
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"], scopes=SCOPES
 # Chargement de la Data Set
 df = pd.DataFrame(gspread.authorize(creds).open("DATA SET").worksheet("DATASET").get_all_records())
 
